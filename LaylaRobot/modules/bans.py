@@ -59,7 +59,7 @@ def ban(update: Update, context: CallbackContext) -> str:
         message.reply_text("Can't seem to find this person.")
         return log_message
     if user_id == bot.id:
-        message.reply_text("Oh yeah, ban myself, noob!")
+        message.delete()
         return log_message
 
     if is_user_ban_protected(chat, user_id, member) and user not in DEV_USERS:
@@ -91,10 +91,7 @@ def ban(update: Update, context: CallbackContext) -> str:
     else:
         silent = False
     log = (
-        f"<b>{html.escape(chat.title)}:</b>\n"
-        f"#{'S' if silent else ''}BANNED\n"
-        f"<b>Admin:</b> {mention_html(user.id, html.escape(user.first_name))}\n"
-        f"<b>User:</b> {mention_html(member.user.id, html.escape(member.user.first_name))}"
+        f"<b>⚠️ User </b> {mention_html(member.user.id, html.escape(member.user.first_name))} Has been Banned!"
     )
     if reason:
         log += "\n<b>Reason:</b> {}".format(reason)
@@ -110,8 +107,7 @@ def ban(update: Update, context: CallbackContext) -> str:
 
         # bot.send_sticker(chat.id, BAN_STICKER)  # banhammer marie sticker
         reply = (
-            f"<code>❕</code><b>Ban Event</b>\n"
-            f"<code> </code><b>•  User:</b> {mention_html(member.user.id, html.escape(member.user.first_name))}"
+            f"⚠️ User </b> {mention_html(member.user.id, html.escape(member.user.first_name))} has been banned!"
         )
         if reason:
             reply += f"\n<code> </code><b>•  Reason:</b> \n{html.escape(reason)}"
