@@ -58,7 +58,7 @@ def warn(user: User,
          message: Message,
          warner: User = None) -> str:
     if is_user_admin(chat, user.id):
-        # message.reply_text("Damn admins, They are too far to be One Punched!")
+        # message.reply_text("I won't warn Administrator")
         return
 
     if user.id in TIGERS:
@@ -91,17 +91,17 @@ def warn(user: User,
         if soft_warn:  # punch
             chat.unban_member(user.id)
             reply = (
-                f"<code>❕</code><b>Punch Event</b>\n"
-                f"<code> </code><b>•  User:</b> {mention_html(user.id, user.first_name)}\n"
-                f"<code> </code><b>•  Count:</b> {limit}")
+                f"<b>Kicked</b>\n"
+                f"<code> </code><b>User:</b> {mention_html(user.id, user.first_name)}\n"
+                f"<code> </code><b>Count:</b> {limit}")
 
         else:  # ban
             chat.kick_member(user.id)
             reply = (
-                f"Ban Event ! \n\n⚠ User {mention_html(user.id, user.first_name)}has been banned\n")
+                f"Banned! \n\n⚠ User {mention_html(user.id, user.first_name)}has been banned!\nReasons:")
 
         for warn_reason in reasons:
-            reply += f"\n - {html.escape(warn_reason)}"
+            reply += f"\n {html.escape(warn_reason)}"
 
         # message.bot.send_sticker(chat.id, BAN_STICKER)  # Saitama's sticker
         keyboard = None
@@ -115,14 +115,14 @@ def warn(user: User,
     else:
         keyboard = InlineKeyboardMarkup([[
             InlineKeyboardButton(
-                " Remove warn", callback_data="rm_warn({})".format(user.id))
+                "Remove warn (Admins Only)", callback_data="rm_warn({})".format(user.id))
         ]])
 
         reply = (
-            f"User {mention_html(user.id, user.first_name)} Has been warned\n"
+            f"⚠ User {mention_html(user.id, user.first_name)} Has been warned!\n"
             f"Count : {num_warns}/{limit}")
         if reason:
-            reply += f"\n<code> </code><b>•  Reason:</b> {html.escape(reason)}"
+            reply += f"\n<code> </code><b>Reason :</b> {html.escape(reason)}"
 
         log_reason = (f"<b>{html.escape(chat.title)}:</b>\n"
                       f"#WARN\n"
@@ -163,7 +163,7 @@ def button(update: Update, context: CallbackContext) -> str:
         res = sql.remove_warn(user_id, chat.id)
         if res:
             update.effective_message.edit_text(
-                "Warn removed by {}.".format(mention_html(user.id, user.first_name)),
+                "Warn removed by Admin",
                 parse_mode=ParseMode.HTML,
             )
             user_member = chat.get_member(user_id)
