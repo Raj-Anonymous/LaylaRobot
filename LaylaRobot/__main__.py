@@ -700,18 +700,18 @@ def main():
             LOGGER.warning(e.message)
 
     test_handler = CommandHandler("test", test)
-    start_handler = CommandHandler("start", start)
+    start_handler = CommandHandler("pruthvi_start_bot", start)
 
-    help_handler = CommandHandler("help", get_help)
+    help_handler = CommandHandler("pruthvi_help_me", get_help)
     help_callback_handler = CallbackQueryHandler(help_button, pattern=r"help_.*")
 
-    settings_handler = CommandHandler("settings", get_settings)
+    settings_handler = CommandHandler("pruthvi_settings", get_settings)
     settings_callback_handler = CallbackQueryHandler(settings_button, pattern=r"stngs_")
 
     about_callback_handler = CallbackQueryHandler(layla_about_callback, pattern=r"layla_")
     source_callback_handler = CallbackQueryHandler(Source_about_callback, pattern=r"source_")
 
-    donate_handler = CommandHandler("donate", donate)
+    donate_handler = CommandHandler("pruthvi_donate_me", donate)
     migrate_handler = MessageHandler(Filters.status_update.migrate, migrate_chats)
 
     # dispatcher.add_handler(test_handler)
