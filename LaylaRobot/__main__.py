@@ -74,10 +74,7 @@ def get_readable_time(seconds: int) -> str:
 
 
 PM_START_TEXT = """
-Hello, I'M Layla
-`ɪ'ᴍ ʜᴇʀᴇ ᴛᴏ ʜᴇʟᴘ ʏᴏᴜ ᴍᴀɴᴀɢᴇ ʏᴏᴜʀ ɢʀᴏᴜᴘꜱ! ʜɪᴛ` /help
-Maintained by @HEROGAMERS1 ❤
-"""
+Hello"""
 
 buttons = [
     [
@@ -102,18 +99,11 @@ buttons = [
 ]
 
 
-HELP_STRINGS = """
-`Hi.. I'M` Layla
-`ᴄʟɪᴄᴋ ᴏɴ ᴛʜᴇ ʙᴜᴛᴛᴏɴꜱ ʙᴇʟᴏᴡ ᴛᴏ ɢᴇᴛ ᴅᴏᴄᴜᴍᴇɴᴛᴀᴛɪᴏɴ ᴀʙᴏᴜᴛ ꜱᴘᴇᴄɪꜰɪᴄ ᴍᴏᴅᴜʟᴇꜱ..`
-Powered by :- [Awesome Bots](t.me/Laylalist)"""
+HELP_STRINGS = """Nothing is here"""
 
 layla_IMG = "https://telegra.ph/file/524b78577a42b02b2f074.jpg"
 
-DONATE_STRING = """Heya, glad to hear you want to donate!
- You can support the project [Hero](t.me/HEROGAMERS1) \
- Supporting isnt always financial! [AwesomeSupport](t.me/LaylaList) \
- Those who cannot provide monetary support are welcome to help us develop the bot at ."""
-
+DONATE_STRING = """No need to donate , I'm rich 😤"""
 IMPORTED = {}
 MIGRATEABLE = []
 HELPABLE = {}
@@ -700,18 +690,18 @@ def main():
             LOGGER.warning(e.message)
 
     test_handler = CommandHandler("test", test)
-    start_handler = CommandHandler("pruthvi_start_bot", start)
+    start_handler = CommandHandler("start", start)
 
-    help_handler = CommandHandler("pruthvi_help_me", get_help)
+    help_handler = CommandHandler("help_", get_help)
     help_callback_handler = CallbackQueryHandler(help_button, pattern=r"help_.*")
 
-    settings_handler = CommandHandler("pruthvi_settings", get_settings)
+    settings_handler = CommandHandler("_settings", get_settings)
     settings_callback_handler = CallbackQueryHandler(settings_button, pattern=r"stngs_")
 
     about_callback_handler = CallbackQueryHandler(layla_about_callback, pattern=r"layla_")
     source_callback_handler = CallbackQueryHandler(Source_about_callback, pattern=r"source_")
 
-    donate_handler = CommandHandler("pruthvi_donate_me", donate)
+    donate_handler = CommandHandler("donate", donate)
     migrate_handler = MessageHandler(Filters.status_update.migrate, migrate_chats)
 
     # dispatcher.add_handler(test_handler)
