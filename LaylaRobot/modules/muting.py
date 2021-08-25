@@ -83,7 +83,7 @@ def mute(update: Update, context: CallbackContext) -> str:
         bot.restrict_chat_member(chat.id, user_id, chat_permissions)
         bot.sendMessage(
             chat.id,
-            f"Muted <b>{html.escape(member.user.first_name)}</b> with no expiration date!",
+            f"⚠ User<b>{html.escape(member.user.first_name)}</b> Has been muted!",
             parse_mode=ParseMode.HTML,
         )
         return log
