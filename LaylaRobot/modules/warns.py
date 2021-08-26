@@ -122,7 +122,7 @@ def warn(user: User,
             f"⚠ User {mention_html(user.id, user.first_name)} Has been warned!\n"
             f"Count : {num_warns}/{limit}")
         if reason:
-            reply += f"\n<code> </code><b>Reason :</b> {html.escape(reason)}"
+            reply += f"\n<b>Reason :</b> {html.escape(reason)}"
 
         log_reason = (f"<b>{html.escape(chat.title)}:</b>\n"
                       f"#WARN\n"
